@@ -6,11 +6,10 @@
 
   <groupId>es.uma.lcc.caesium</groupId>
   <artifactId>derivative-free-optimization</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
 
   <name>derivative-free-optimization</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>http://bio4res.lcc.uma.es</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
