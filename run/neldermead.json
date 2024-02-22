@@ -1,0 +1,11 @@
+{
+	"seed" : 1,
+	"numruns" : 20,
+	"maxevals" : 20000,
+	"reflection" : 1.29,
+	"expansion" : 2.29,
+	"contraction" : 0.47,
+	"shrink" : 0.57,
+	"tolerance" : 1e-2,
+	"maxevalscycle" : 1000
+}

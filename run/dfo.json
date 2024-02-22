@@ -1,0 +1,7 @@
+{
+	"method" : "neldermead",
+	"configuration" : "neldermead.json",
+	"problem" : "sphere",
+	"dimension" : "5",
+	"range" : "5.12"
+}

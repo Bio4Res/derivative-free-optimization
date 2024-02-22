@@ -1,0 +1,10 @@
+{
+	"seed" : 1,
+	"numruns" : 20,
+	"maxevals" : 20000,
+	"maxevalscycle" : 1000,
+	"acceleration" : 1.0,
+	"contraction" : 0.5,
+	"step" : 0.1,
+	"minstep" : 1e-5
+}
