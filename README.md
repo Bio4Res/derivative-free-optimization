@@ -19,7 +19,7 @@ Requires JDK 17 or higher. The project relies on the [json-simple](https://clift
 
 See `dfopt/test/RunDerivativeFree` class for an example of use. 
 
-The configuration of the algorithm is done via a JSON file (see `run/bitstring.json` for an example).
+The configuration of the algorithm is done via a JSON file (see `run/hookejeeves.json` and `run/neldermead.json` for configuration examples for each of the algorithms).
 
 If you are using Maven, the following dependency can be added to your project:
 
