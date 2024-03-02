@@ -17,6 +17,7 @@ import es.uma.lcc.caesium.dfopt.hookejeeves.HookeJeeves;
 import es.uma.lcc.caesium.dfopt.hookejeeves.HookeJeevesConfiguration;
 import es.uma.lcc.caesium.dfopt.neldermead.NelderMead;
 import es.uma.lcc.caesium.dfopt.neldermead.NelderMeadConfiguration;
+import es.uma.lcc.caesium.problem.ackley.dfopt.Ackley;
 import es.uma.lcc.caesium.problem.griewank.dfopt.Griewank;
 import es.uma.lcc.caesium.problem.rastrigin.dfopt.Rastrigin;
 import es.uma.lcc.caesium.problem.rosenbrock.dfopt.Rosenbrock;
@@ -25,7 +26,7 @@ import es.uma.lcc.caesium.problem.sphere.dfopt.Sphere;
 
 
 /**
- * Class for testing the Nelder-Mead algorithm
+ * Class for testing the derivative-free optimization algorithms
  * @author ccottap
  * @version 1.0
  */
@@ -81,6 +82,9 @@ public class RunDerivativeFree {
 			break;
 		case "griewank":
 			obj = new Griewank(dimension, range);
+			break;
+		case "ackley":
+			obj = new Ackley(dimension, range);
 			break;
 		default:
 			System.out.println("Unknown problem " + problem);

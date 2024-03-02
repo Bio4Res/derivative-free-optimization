@@ -67,7 +67,7 @@ public class HookeJeeves extends DerivativeFreeMethod {
 		
 		double curStep = hjconf.getStep();
 		int n = obj.getNumVariables();
-		double[] delta = new double[n];		// compute stepsizes along each dimension
+		double[] delta = new double[n];		// compute step sizes along each dimension
 		initializeDelta (delta, curStep);
 		double[] direct = new double[n];	// direction of the last improvement
 
@@ -121,9 +121,9 @@ public class HookeJeeves extends DerivativeFreeMethod {
 
 
 	/**
-	 * Initializes delta values given the current stepsize
+	 * Initializes delta values given the current step size
 	 * @param delta an array where the deltas for each dimension will be stored (allocated outside)
-	 * @param curStep the current stepsize ((expressed as a fraction of the domain range)
+	 * @param curStep the current step size (expressed as a fraction of the domain range)
 	 */
 	private void initializeDelta(double[] delta, double curStep) {
 		int n = obj.getNumVariables();
@@ -134,7 +134,7 @@ public class HookeJeeves extends DerivativeFreeMethod {
 	}
 	
 	/**
-	 * Gets the direction from a point to another, and stores it in the array provided.
+	 * Gets the direction from a point {@code origin} to another point {@code destination}, and stores it in the array {@code delta} provided.
 	 * @param delta a double array where the displacements along each direction will be stored
 	 * @param origin the origin point
 	 * @param destination the destination point
@@ -148,11 +148,11 @@ public class HookeJeeves extends DerivativeFreeMethod {
 	}
 
 	/**
-	 * Displaces a point given a direction and a numerical factor weighting this direction
+	 * Displaces a {@code point} given a direction {@code delta} and a numerical factor {@code acc} weighting this direction
 	 * @param point the origin point
 	 * @param delta the displacements along each direction
 	 * @param acc the factor that expresses how much the displacement is scaled
-	 * @return a point p' = point + acc * delta
+	 * @return a point p' = {@code point} + {@code acc} * {@code delta}
 	 */
 	private List<Double> displacePoint(List<Double> point, double[] delta, double acc) {
 		assert (delta.length == point.size());
@@ -167,7 +167,7 @@ public class HookeJeeves extends DerivativeFreeMethod {
 	/**
 	 * Gets the best point in the solid neighborhood of a given point, i.e. including this point itself
 	 * @param point the base point
-	 * @param delta stepsizes along each dimension
+	 * @param delta step sizes along each dimension
 	 * @return the best point neighboring the base point
 	 */
 	private EvaluatedSolution getBestNeighbor(List<Double> point, double[] delta) {
@@ -178,7 +178,7 @@ public class HookeJeeves extends DerivativeFreeMethod {
 	/**
 	 * Gets the best point in the neighborhood of a given point
 	 * @param point the base point
-	 * @param delta stepsizes along each dimension
+	 * @param delta step sizes along each dimension
 	 * @param solid whether the neighborhood is solid or not, i.e. whether the base point is included as well or not
 	 * @return the best point neighboring the base point
 	 */
