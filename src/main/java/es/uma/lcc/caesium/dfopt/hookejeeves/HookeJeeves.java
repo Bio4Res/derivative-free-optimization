@@ -159,7 +159,7 @@ public class HookeJeeves extends DerivativeFreeMethod {
 		int n = point.size();
 		List<Double> p = new ArrayList<Double>(n);
 		for (int i=0; i<n; i++) {
-			p.add(point.get(i) + acc*delta[i]);
+			p.add(Math.min(obj.getMaxValue(i), Math.max(obj.getMinValue(i), point.get(i) + acc*delta[i])));
 		}
 		return p;
 	}
@@ -197,7 +197,7 @@ public class HookeJeeves extends DerivativeFreeMethod {
 		for (int i=0; i<n; i++) {
 			for (int j=-1; j<=1; j+=2) {
 				List<Double> p = new ArrayList<Double>(point);
-				p.set(i, point.get(i) + j*delta[i]);
+				p.set(i, Math.min(obj.getMaxValue(i), Math.max(obj.getMinValue(i), point.get(i) + j*delta[i])));
 				EvaluatedSolution sol = new EvaluatedSolution(p, obj.evaluate(p));
 				if (sol.value() < best.value()) {
 					best = sol;

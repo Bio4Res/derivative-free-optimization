@@ -17,6 +17,7 @@ import es.uma.lcc.caesium.dfopt.hookejeeves.HookeJeeves;
 import es.uma.lcc.caesium.dfopt.hookejeeves.HookeJeevesConfiguration;
 import es.uma.lcc.caesium.dfopt.neldermead.NelderMead;
 import es.uma.lcc.caesium.dfopt.neldermead.NelderMeadConfiguration;
+import es.uma.lcc.caesium.problem.griewank.dfopt.Griewank;
 import es.uma.lcc.caesium.problem.rastrigin.dfopt.Rastrigin;
 import es.uma.lcc.caesium.problem.rosenbrock.dfopt.Rosenbrock;
 import es.uma.lcc.caesium.problem.sphere.dfopt.Sphere;
@@ -77,6 +78,9 @@ public class RunDerivativeFree {
 			break;
 		case "Rosenbrock":
 			obj = new Rosenbrock(dimension, range);
+			break;
+		case "griewank":
+			obj = new Griewank(dimension, range);
 			break;
 		default:
 			System.out.println("Unknown problem " + problem);
