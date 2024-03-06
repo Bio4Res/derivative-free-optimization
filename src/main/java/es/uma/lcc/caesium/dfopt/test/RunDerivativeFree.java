@@ -10,13 +10,10 @@ import com.github.cliftonlabs.json_simple.Jsoner;
 
 import es.uma.lcc.caesium.dfopt.base.DerivativeFreeConfiguration;
 import es.uma.lcc.caesium.dfopt.base.DerivativeFreeMethod;
+import es.uma.lcc.caesium.dfopt.base.DerivativeFreeMethodFactory;
 import es.uma.lcc.caesium.dfopt.base.DerivativeFreeObjectiveFunction;
 import es.uma.lcc.caesium.dfopt.base.EvaluatedSolution;
 import es.uma.lcc.caesium.dfopt.base.IteratedDerivativeFreeMethod;
-import es.uma.lcc.caesium.dfopt.hookejeeves.HookeJeeves;
-import es.uma.lcc.caesium.dfopt.hookejeeves.HookeJeevesConfiguration;
-import es.uma.lcc.caesium.dfopt.neldermead.NelderMead;
-import es.uma.lcc.caesium.dfopt.neldermead.NelderMeadConfiguration;
 import es.uma.lcc.caesium.problem.ackley.dfopt.Ackley;
 import es.uma.lcc.caesium.problem.griewank.dfopt.Griewank;
 import es.uma.lcc.caesium.problem.rastrigin.dfopt.Rastrigin;
@@ -28,7 +25,7 @@ import es.uma.lcc.caesium.problem.sphere.dfopt.Sphere;
 /**
  * Class for testing the derivative-free optimization algorithms
  * @author ccottap
- * @version 1.0
+ * @version 1.1
  */
 public class RunDerivativeFree {
 
@@ -45,30 +42,23 @@ public class RunDerivativeFree {
 		}
 		JsonObject runconf = (JsonObject) Jsoner.deserialize(new FileReader(args[0]));
 
-		String method = ((String)runconf.get("method")).toLowerCase();
 		String filename = (String)runconf.get("configuration");
 		
-		DerivativeFreeConfiguration conf = null;
-		DerivativeFreeMethod solver = null;
-		JsonObject jsonconf = (JsonObject) Jsoner.deserialize(new FileReader(filename));
-		switch(method) {
-		case "neldermead": 		
-			conf = new NelderMeadConfiguration(jsonconf);
-			solver = new NelderMead((NelderMeadConfiguration)conf);
-			break;
-		case "hookejeeves":
-			conf = new HookeJeevesConfiguration(jsonconf);
-			solver = new HookeJeeves((HookeJeevesConfiguration)conf);
-			break;
-		default:
-			System.out.println("Unknown method " + method);
-			System.exit(1);
-		}
+		// creates factory
+		DerivativeFreeMethodFactory dfmf = new DerivativeFreeMethodFactory();
 		
+		// reads configuration
+		DerivativeFreeConfiguration conf = dfmf.readConfiguration(filename);
+		
+		// creates the solver
+		DerivativeFreeMethod solver = dfmf.create(conf);
+		
+		// gets problem information
 		String problem = ((String)runconf.get("problem")).toLowerCase();
 		int dimension = Integer.parseInt((String)runconf.get("dimension"));
 		double range = Double.parseDouble((String)runconf.get("range"));
 		
+		// creates the objective function
 		DerivativeFreeObjectiveFunction obj = null;
 		switch(problem) {
 		case "sphere":
@@ -91,21 +81,24 @@ public class RunDerivativeFree {
 			System.exit(1);
 		}
 		
-		System.out.println("Method:\t\t" + method);
-		System.out.println("Configuration:\t" + filename);
-		System.out.println("Problem:\t" + problem + " (" + dimension + ", " + range + ")");
+		System.out.println("Configuration:\t " + filename);
+		System.out.println("Problem:\t " + problem + " (" + dimension + ", " + range + ")");
 		System.out.println(conf);		
 		
+		
+		// creates the iterated solver
 		IteratedDerivativeFreeMethod idfm = new IteratedDerivativeFreeMethod(conf, solver);
 		idfm.setObjectiveFunction(obj);
 		idfm.setVerbosityLevel(0);
 
+		// runs the iterated solver
 		for (int i=0; i<conf.getNumruns(); i++) {
 			EvaluatedSolution sol = idfm.run();
 			System.out.println ("Run " + i + " (" + idfm.getTime() + "s)\t: " + sol.value());
 		}
 		
-		PrintWriter file = new PrintWriter(method + "-stats.json");
+		// writes stats
+		PrintWriter file = new PrintWriter(conf.getMethod() + "-stats.json");
 		file.print(idfm.getStatistics().toJSON().toJson());
 		file.close();
 

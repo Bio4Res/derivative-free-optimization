@@ -8,9 +8,13 @@ import es.uma.lcc.caesium.dfopt.base.DerivativeFreeConfiguration;
 /**
  * Configuration of the Hooke-Jeeves method
  * @author ccottap
- * @version 1.0
+ * @version 1.1
  */
 public class HookeJeevesConfiguration extends DerivativeFreeConfiguration {
+	/**
+	 * name of the method
+	 */
+	private final static String HOOKEJEEVES = "hookejeeves";
 	/**
 	 * default value of the acceleration constant
 	 */
@@ -50,6 +54,7 @@ public class HookeJeevesConfiguration extends DerivativeFreeConfiguration {
 	 */
 	public HookeJeevesConfiguration() {
 		super();
+		setMethod(HOOKEJEEVES);
 		acceleration = ACCELERATION;
 		contraction = CONTRACTION;
 		step = STEP;
@@ -59,11 +64,12 @@ public class HookeJeevesConfiguration extends DerivativeFreeConfiguration {
 	
 
 	/**
-	 * Creates the configuration by reading from a file
+	 * Creates the configuration by reading from a JSON object
 	 * @param json a JSON object
 	 */
 	public HookeJeevesConfiguration(JsonObject json) {
 		super(json);
+		setMethod(HOOKEJEEVES);
 		if (json.containsKey("acceleration")) {
 			setAcceleration(getDouble(json, "acceleration"));
 		}

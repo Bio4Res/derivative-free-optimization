@@ -10,7 +10,7 @@ import es.uma.lcc.caesium.dfopt.base.EvaluatedSolution;
 /**
  * Nelder-Mead optimizer
  * @author ccottap
- * @version 1.0
+ * @version 1.1
  */
 public class NelderMead extends DerivativeFreeMethod {
 	/**
@@ -206,6 +206,11 @@ public class NelderMead extends DerivativeFreeMethod {
 		return std;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return  "===============================\nNelder-Mead\n===============================\n" + conf;
+	}
 	
 
 }

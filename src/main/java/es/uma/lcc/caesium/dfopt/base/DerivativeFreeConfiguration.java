@@ -7,7 +7,7 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 /**
  * Configuration of the Nelder-Mead method
  * @author ccottap
- * @version 1.0
+ * @version 1.1
  */
 public class DerivativeFreeConfiguration {
 	/**
@@ -42,6 +42,10 @@ public class DerivativeFreeConfiguration {
 	 * maximum number of calls to the objective function in a cycle of Nelder-Mead algorithm
 	 */
 	private int maxevalsCycle;
+	/**
+	 * a string identifying the method
+	 */
+	protected String method;
 	
 
 	/**
@@ -184,6 +188,26 @@ public class DerivativeFreeConfiguration {
 
 
 
+	/**
+	 * Returns the method
+	 * @return the method
+	 */
+	public String getMethod() {
+		return method;
+	}
+
+
+
+	/**
+	 * Sets the method
+	 * @param method the method
+	 */
+	public void setMethod(String method) {
+		this.method = method;
+	}
+
+
+
 	@Override
 	public String toString() {
 		String str = "-------------------------------\n";
@@ -191,6 +215,8 @@ public class DerivativeFreeConfiguration {
 				"numruns:\t " + numruns + "\n" +
 				"maxevals:\t " + maxevals + "\n" +
 				"maxevals-cycle:\t " + maxevalsCycle + "\n" +
+				"-------------------------------\n" +
+				"method:\t\t " + method + "\n" +
 				"-------------------------------\n";
 		return str;		
 	}

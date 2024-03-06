@@ -11,7 +11,7 @@ import es.uma.lcc.caesium.dfopt.base.EvaluatedSolution;
 /**
  * Hooke-Jeeves algorithm
  * @author ccottap
- * @version 1.0
+ * @version 1.1
  */
 public class HookeJeeves extends DerivativeFreeMethod {
 	/**
@@ -206,6 +206,12 @@ public class HookeJeeves extends DerivativeFreeMethod {
 		}
 		
 		return best;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return  "===============================\nHooke-Jeeves\n===============================\n" + conf;
 	}
 
 }

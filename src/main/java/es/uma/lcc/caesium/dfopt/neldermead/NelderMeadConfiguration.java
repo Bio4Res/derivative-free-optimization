@@ -8,9 +8,13 @@ import es.uma.lcc.caesium.dfopt.base.DerivativeFreeConfiguration;
 /**
  * Configuration of the Nelder-Mead method
  * @author ccottap
- * @version 1.0
+ * @version 1.1
  */
 public class NelderMeadConfiguration extends DerivativeFreeConfiguration {
+	/**
+	 * name of the method
+	 */
+	private final static String NELDERMEAD = "neldermead";
 	/**
 	 * default value of the reflection constant
 	 */
@@ -59,6 +63,7 @@ public class NelderMeadConfiguration extends DerivativeFreeConfiguration {
 	 */
 	public NelderMeadConfiguration() {
 		super();
+		setMethod(NELDERMEAD);
 		reflection = REFLECTION;
 		expansion = EXPANSION;
 		contraction = CONTRACTION;
@@ -69,11 +74,12 @@ public class NelderMeadConfiguration extends DerivativeFreeConfiguration {
 	
 
 	/**
-	 * Creates the configuration by reading from a file
+	 * Creates the configuration by reading from a JSON object
 	 * @param json a JSON object
 	 */
 	public NelderMeadConfiguration(JsonObject json) {
 		super(json);
+		setMethod(NELDERMEAD);
 		if (json.containsKey("reflection")) {
 			setReflection(getDouble(json, "reflection"));
 		}
