@@ -23,7 +23,7 @@ public class DerivativeFreeConfiguration {
 	 */
 	private final static int MAXEVALS = 20000;
 	/**
-	 * default value for the maximum number of calls to the objective function
+	 * default value for the maximum number of calls to the objective function in a cycle (for iterated method)
 	 */
 	private final static int MAXEVALSCYCLE = 1000;	
 	/**
