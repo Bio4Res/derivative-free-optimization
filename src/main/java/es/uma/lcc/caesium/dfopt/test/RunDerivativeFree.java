@@ -37,7 +37,7 @@ public class RunDerivativeFree {
 	 */
 	public static void main(String[] args) throws FileNotFoundException, JsonException {		
 		if (args.length < 1) {
-			System.out.println("Run filename muest be provided");
+			System.out.println("Run filename must be provided");
 			System.exit(1);
 		}
 		JsonObject runconf = (JsonObject) Jsoner.deserialize(new FileReader(args[0]));
@@ -67,7 +67,7 @@ public class RunDerivativeFree {
 		case "rastrigin":
 			obj = new Rastrigin(dimension, range);
 			break;
-		case "Rosenbrock":
+		case "rosenbrock":
 			obj = new Rosenbrock(dimension, range);
 			break;
 		case "griewank":
