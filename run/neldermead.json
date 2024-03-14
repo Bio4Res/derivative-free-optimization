@@ -1,4 +1,5 @@
 {
+	"method" : "neldermead",
 	"seed" : 1,
 	"numruns" : 20,
 	"maxevals" : 20000,
