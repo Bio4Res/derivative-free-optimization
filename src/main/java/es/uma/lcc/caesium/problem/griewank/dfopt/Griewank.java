@@ -22,7 +22,7 @@ public class Griewank extends DerivativeFreeObjectiveFunction {
 	/**
 	 * function constant
 	 */
-	private static final double A = 4000.0;
+	private static final double A = 1.0/4000.0;
 	
 	/**
 	 * Basic constructor
@@ -45,7 +45,7 @@ public class Griewank extends DerivativeFreeObjectiveFunction {
 			s += v*v;
 			p *= Math.cos(v/Math.sqrt(j+1));
 		}
-		return 1.0 + 1.0/A*s - p;
+		return 1.0 + A*s - p;
 	}
 
 	@Override
