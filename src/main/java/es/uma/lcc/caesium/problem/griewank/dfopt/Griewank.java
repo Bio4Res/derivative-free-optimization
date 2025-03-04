@@ -42,7 +42,7 @@ public class Griewank extends DerivativeFreeObjectiveFunction {
 		double p = 1.0;
 		for (int j=0; j<n; j++) {
 			double v = sol.get(j);
-			s += (j == (n-1)) ? 0 : v*v;
+			s += v*v;
 			p *= Math.cos(v/Math.sqrt(j+1));
 		}
 		return 1.0 + 1.0/A*s - p;
